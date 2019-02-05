@@ -1,0 +1,40 @@
+{
+    "name": "sparkison/laravel-vue-datatables",
+    "description": "Data Table library with server-side processing and a VueJS component",
+    "keywords": [
+        "bright-minded-media",
+        "datatable",
+        "data-table",
+        "data-table-server-side"
+    ],
+    "homepage": "https://github.com/sparkison/laravel-vue-datatables",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shaun Parkison",
+            "email": "hello@brightmindedmedia.com",
+            "homepage": "https://www.brightmindedmedia.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/framework": "5.7.*",
+        "nerdymind/helpers": "*",
+        "box/spout": "2.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\VueDatatable\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\VueDatatable\\AppServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}
