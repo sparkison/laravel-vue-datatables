@@ -21,7 +21,7 @@
     "require": {
         "php": ">=7.1.0",
         "laravel/framework": "5.7.*",
-        "nerdymind/helpers": "*",
+        "sparkison/laravel-helpers": "*",
         "box/spout": "2.7.*"
     },
     "autoload": {
