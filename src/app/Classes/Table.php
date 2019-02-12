@@ -7,6 +7,7 @@ use LaravelEnso\VueDatatable\app\Classes\Table\Builder;
 
 abstract class Table
 {
+    protected $useScout = true; // default to using Laravel Scout for search
     protected $request;
     protected $templatePath;
 
@@ -54,6 +55,7 @@ abstract class Table
     private function builder()
     {
         return new Builder(
+            $this->useScout,
             $this->request,
             $this->query()
         );

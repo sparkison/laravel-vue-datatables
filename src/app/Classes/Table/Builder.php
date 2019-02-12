@@ -9,6 +9,7 @@ use LaravelEnso\VueDatatable\app\Exceptions\QueryException;
 class Builder
 {
     private $request;
+    private $useScout;
     private $query;
     private $count;
     private $filtered;
@@ -18,9 +19,10 @@ class Builder
     private $meta;
     private $fullRecordInfo;
 
-    public function __construct(Obj $request, QueryBuilder $query)
+    public function __construct(string $useScout, Obj $request, QueryBuilder $query)
     {
         $this->request = $request;
+        $this->useScout = $useScout;
         $this->meta = is_string($this->request->get('meta'))
             ? json_decode($this->request->get('meta'))
             : (object) $this->request->get('meta');
@@ -120,7 +122,7 @@ class Builder
     private function filter()
     {
         if ($this->hasFilters()) {
-            (new Filters($this->request, $this->query, $this->columns))->set();
+            (new Filters($this->useScout, $this->request, $this->query, $this->columns))->set();
 
             if ($this->fullRecordInfo) {
                 $this->filtered = $this->count();

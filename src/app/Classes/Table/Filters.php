@@ -7,12 +7,14 @@ use Carbon\Carbon;
 class Filters
 {
     private $request;
+    private $useScout;
     private $query;
     private $columns;
 
-    public function __construct($request, $query, $columns)
+    public function __construct($useScout, $request, $query, $columns)
     {
         $this->request = $request;
+        $this->useScout = $useScout;
         $this->query = $query;
         $this->columns = $columns;
     }
@@ -30,17 +32,29 @@ class Filters
             return $this;
         }
 
-        collect(explode(' ', $this->request->get('search')))
-            ->each(function ($arg) {
-                $this->query->where(function ($query) use ($arg) {
-                    $this->columns->each(function ($column) use ($query, $arg) {
-                        if ($column->meta->searchable) {
-                            $query->orWhere($column->data, 'LIKE', '%'.$arg.'%');
-                        }
+        /** @var Model $model */
+        $model = $this->query->getModel();
+        $table = $model->getTable();
+
+        if ($this->useScout) {
+            $ids = $model->search($this->request->get('search'))
+                ->keys()->all();
+
+            $this->query->where(function ($query) use ($table, $ids) {
+                $query->whereIn($table.'.id', $ids);
+            });
+        } else {
+            collect(explode(' ', $this->request->get('search')))
+                ->each(function ($arg) {
+                    $this->query->where(function ($query) use ($arg) {
+                        $this->columns->each(function ($column) use ($query, $arg) {
+                            if ($column->meta->searchable) {
+                                $query->orWhere($column->data, 'LIKE', '%'.$arg.'%');
+                            }
+                        });
                     });
                 });
-            });
-
+        }
         return $this;
     }
 
