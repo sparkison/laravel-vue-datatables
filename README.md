@@ -6,8 +6,8 @@ Customized for my project needs. If you're using it feel free to let me know! I'
 happy to give this project a little more love. The primary reason for this fork was to 
 reduce the dependencies needed. Original project requires nearly all of the Enso framework.
 
-This version is also configured for *Bootstrap 4* as apposed to the original which is
- based off of Bulma.
+This version is also configured for **Bootstrap 4** as apposed to the original which is
+ based off of _Bulma_.
 
 ### Configuration & Usage
 
