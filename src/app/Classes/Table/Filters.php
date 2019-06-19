@@ -37,11 +37,14 @@ class Filters
         $table = $model->getTable();
 
         if ($this->useScout) {
-            $ids = $model->search($this->request->get('search'))
-                ->keys()->all();
+            unset($_ids);
+            $_ids = $model->search($this->request->get('search'))
+                ->select($table.'.id')
+                ->get()
+                ->toArray();
 
-            $this->query->where(function ($query) use ($table, $ids) {
-                $query->whereIn($table.'.id', $ids);
+            $this->query->where(function ($query) use ($table, $_ids) {
+                $query->whereIn($table.'.id', $_ids);
             });
         } else {
             collect(explode(' ', $this->request->get('search')))
