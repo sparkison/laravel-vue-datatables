@@ -1,6 +1,6 @@
 # Laravel Vue Data Table
 
-Fork of [enso datatables](https://docs.laravel-enso.com/packages/vue-datatable.html)
+Fork of [Enso Vue Datatable](https://docs.laravel-enso.com/packages/vue-datatable.html)
 
 Customized for my project needs. If you're using it feel free to let me know! I'd be 
 happy to give this project a little more love. The primary reason for this fork was to 
