@@ -7,10 +7,12 @@ use Illuminate\Support\Str;
 class Structure
 {
     private $template;
+    private $params;
 
-    public function __construct($template)
+    public function __construct($template, array $params = [])
     {
         $this->template = $template;
+        $this->params = $params;
     }
 
     public function build()
@@ -30,7 +32,7 @@ class Structure
                 ?? config('enso.datatable.dataRouteSuffix')
         );
 
-        $this->template->readPath = route($route, [], false);
+        $this->template->readPath = route($route, $this->params, false);
 
         return $this;
     }

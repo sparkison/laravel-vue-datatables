@@ -10,17 +10,19 @@ class Template
 {
     private $filename;
     private $template;
+    private $params;
 
-    public function __construct(string $filename)
+    public function __construct(string $filename, array $params = [])
     {
         $this->filename = $filename;
+        $this->params = $params;
     }
 
     public function get()
     {
         $this->readTemplate();
 
-        (new Builder($this->template))
+        (new Builder($this->template, $this->params))
             ->run();
 
         return ['template' => $this->template];

@@ -10,15 +10,17 @@ use LaravelEnso\VueDatatable\app\Classes\Template\Builders\Structure;
 class Builder
 {
     private $template;
+    private $params;
 
-    public function __construct($template)
+    public function __construct($template, array $params = [])
     {
         $this->template = $template;
+        $this->params = $params;
     }
 
     public function run()
     {
-        (new Structure($this->template))
+        (new Structure($this->template, $this->params))
             ->build();
 
         (new Columns($this->template))

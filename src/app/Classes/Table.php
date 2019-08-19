@@ -23,9 +23,9 @@ abstract class Table
         return $this->request;
     }
 
-    public function init()
+    public function init(array $params = [])
     {
-        return (new Template($this->templatePath()))
+        return (new Template($this->templatePath(), $params))
             ->get();
     }
 
