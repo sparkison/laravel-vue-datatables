@@ -21,8 +21,7 @@
     "require": {
         "php": ">=7.1.0",
         "laravel/framework": "5.8.*",
-        "sparkison/laravel-helpers": "*",
-        "box/spout": "3.0.*"
+        "sparkison/laravel-helpers": "*"
     },
     "autoload": {
         "psr-4": {
